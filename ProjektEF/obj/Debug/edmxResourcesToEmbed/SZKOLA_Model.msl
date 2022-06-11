@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SZKOLAModelStoreContainer" CdmEntityContainer="SZKOLAEntities">
+    <EntitySetMapping Name="Klasies">
+      <EntityTypeMapping TypeName="SZKOLAModel.Klasy">
+        <MappingFragment StoreEntitySet="Klasy">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Klasa" ColumnName="Klasa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nauczycieles">
+      <EntityTypeMapping TypeName="SZKOLAModel.Nauczyciele">
+        <MappingFragment StoreEntitySet="Nauczyciele">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Imię" ColumnName="Imię" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="PrzedmiotID" ColumnName="PrzedmiotID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Przedmioties">
+      <EntityTypeMapping TypeName="SZKOLAModel.Przedmioty">
+        <MappingFragment StoreEntitySet="Przedmioty">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Przedmiot" ColumnName="Przedmiot" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uczniowies">
+      <EntityTypeMapping TypeName="SZKOLAModel.Uczniowie">
+        <MappingFragment StoreEntitySet="Uczniowie">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Imię" ColumnName="Imię" />
+          <ScalarProperty Name="KlasaID" ColumnName="KlasaID" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wycieczkis">
+      <EntityTypeMapping TypeName="SZKOLAModel.Wycieczki">
+        <MappingFragment StoreEntitySet="Wycieczki">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KlasaID" ColumnName="KlasaID" />
+          <ScalarProperty Name="NauczycielID" ColumnName="NauczycielID" />
+          <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+          <ScalarProperty Name="Atrakcje" ColumnName="Atrakcje" />
+          <ScalarProperty Name="Od" ColumnName="Od" />
+          <ScalarProperty Name="Do" ColumnName="Do" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZadaniaDomowes">
+      <EntityTypeMapping TypeName="SZKOLAModel.ZadaniaDomowe">
+        <MappingFragment StoreEntitySet="ZadaniaDomowe">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KlasaID" ColumnName="KlasaID" />
+          <ScalarProperty Name="UczeńID" ColumnName="UczeńID" />
+          <ScalarProperty Name="DataZakończenia" ColumnName="DataZakończenia" />
+          <ScalarProperty Name="DataOddania" ColumnName="DataOddania" />
+          <ScalarProperty Name="NauczycielID" ColumnName="NauczycielID" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

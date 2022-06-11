@@ -1,0 +1,226 @@
+﻿<Window x:Class="ProjektEF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektEF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded"
+        Background="Transparent"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize">
+
+
+    <Window.Resources>
+        <CollectionViewSource x:Key="uczniowieViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Uczniowie}, CreateList=True}"/>
+        <CollectionViewSource x:Key="nauczycieleViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Nauczyciele}, CreateList=True}"/>
+        <CollectionViewSource x:Key="przedmiotyViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Przedmioty}, CreateList=True}"/>
+        <CollectionViewSource x:Key="wycieczkiViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Wycieczki}, CreateList=True}"/>
+        <RoutedUICommand x:Key="UczniowieCommand" Text="Uczniowie"/>
+        <RoutedUICommand x:Key="NauczycieleCommand" Text="Nauczyciele"/>
+        <RoutedUICommand x:Key="PrzedmiotyCommand" Text="Przedmioty"/>
+        <RoutedUICommand x:Key="WycieczkiCommand" Text="Wycieczki"/>
+        <RoutedUICommand x:Key="DeleteUczenCommand" Text="Delete Uczen"/>
+        <RoutedUICommand x:Key="DeleteCommand" Text="Delete"/>
+        <RoutedUICommand x:Key="UpdateCommand" Text="Update"/>
+        <RoutedUICommand x:Key="AddCommand" Text="Add"/>
+        <RoutedUICommand x:Key="CancelCommand" Text="Cancel"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource UczniowieCommand}" Executed="UczniowieCommandHandler"/>
+        <CommandBinding Command="{StaticResource NauczycieleCommand}" Executed="NauczycieleCommandHandler"/>
+        <CommandBinding Command="{StaticResource WycieczkiCommand}" Executed="WycieczkiCommandHandler"/>
+        <CommandBinding Command="{StaticResource PrzedmiotyCommand}" Executed="PrzedmiotyCommandHandler"/>
+    </Window.CommandBindings>
+    <Border Background="#1c1c1c" CornerRadius="10">
+        <Grid DataContext="{StaticResource uczniowieViewSource}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="CRUD app"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="21"/>
+
+            <StackPanel DataContext="{StaticResource uczniowieViewSource}"
+                        Grid.Row="1"
+                        Visibility="Visible"
+                        x:Name="uczniowieStackPanel">
+
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Imię:"/>
+                <TextBox x:Name="imieBox" Style="{StaticResource MainLabelTheme}" Text="{Binding Imię, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" VerticalAlignment="Center" />
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Klasa ID:"/>
+                <TextBox x:Name="klasaIDTextBox" Style="{StaticResource MainLabelTheme}" Text="{Binding KlasaID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" VerticalAlignment="Center" />
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Nazwisko:"/>
+                <TextBox x:Name="nazwiskoTextBox" Style="{StaticResource MainLabelTheme}" Text="{Binding Nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" VerticalAlignment="Center" />
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Content="PESEL:"/>
+                <TextBox x:Name="pESELTextBox" Style="{StaticResource MainLabelTheme}" Text="{Binding PESEL, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" VerticalAlignment="Center" />
+                <Button Click="Add_Uczen" Style="{StaticResource ButtonTheme}" Content="Dodaj"></Button>
+            </StackPanel>
+            <StackPanel DataContext="{StaticResource przedmiotyViewSource}"
+                        Grid.Row="1"
+                        Visibility="Hidden"
+                        x:Name="przedmiotyStackPanel">
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Przedmiot:"/>
+                <TextBox x:Name="przedmiotTextBox" Style="{StaticResource MainLabelTheme}" HorizontalAlignment="Center" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center" Width="120"/>
+                <Button Click="Add_Przedmiot" Style="{StaticResource ButtonTheme}" Content="Dodaj"></Button>
+            </StackPanel>
+            <StackPanel DataContext="{StaticResource nauczycieleViewSource}"
+                        Grid.Row="1"
+                        Visibility="Hidden"
+                        x:Name="nauczycieleStackPanel">
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Imię:"/>
+                <TextBox x:Name="imięTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" Text="{Binding Imię, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Nazwisko:"/>
+                <TextBox x:Name="nazwiskoTextBox1" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="{Binding Nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="PrzedmiotID:"/>
+                <TextBox x:Name="przedmiotIDTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" Text="{Binding PrzedmiotID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Button Click="Add_Nauczyciel" Style="{StaticResource ButtonTheme}" Content="Dodaj"></Button>
+
+            </StackPanel>
+
+            <StackPanel DataContext="{StaticResource wycieczkiViewSource}"
+                        Grid.Row="1"
+                        Visibility="Hidden"
+                        x:Name="wycieczkiStackPanel">
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Miasto:"/>
+                <TextBox x:Name="miastoTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" Text="{Binding Miasto, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Atrakcje:"/>
+                <TextBox x:Name="atrakcjeTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="0" Text="{Binding Atrakcje, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="KlasaID:"/>
+                <TextBox x:Name="klasaIDTextBox1" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" Text="{Binding KlasaID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="NauczycielID:"/>
+                <TextBox x:Name="nauczycielIDTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="5" Text="{Binding NauczycielID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Od:"/>
+                <DatePicker x:Name="odDatePicker" Grid.Column="1" HorizontalAlignment="Center" Margin="3" Grid.Row="6" SelectedDate="{Binding Od, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Do:"/>
+                <DatePicker x:Name="doDatePicker" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" SelectedDate="{Binding Do, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+                <Button Click="Add_Wycieczka" Style="{StaticResource ButtonTheme}" Content="Dodaj"></Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal">
+                <RadioButton Content="Uczniowie"
+                             Height="75"
+                             Width="150"
+                             FontSize="16"
+                             Foreground="White"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{StaticResource UczniowieCommand}"/>
+                <RadioButton Content="Nauczyciele"
+                             Height="75"
+                             Width="150"
+                             FontSize="16"
+                             Foreground="White"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{StaticResource NauczycieleCommand}"/>
+                <RadioButton Content="Przedmioty"
+                            Width="150"
+                             Height="75"
+                             FontSize="16"
+                             Foreground="White"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{StaticResource PrzedmiotyCommand}"/>
+                <RadioButton Content="Wycieczki"
+                             Height="75"
+                             Width="150"
+                             FontSize="16"
+                             Foreground="White"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{StaticResource WycieczkiCommand}"/>
+            </StackPanel>
+
+
+            <Grid Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="10"
+                  DataContext="{Binding Path=CurrentView, Mode=TwoWay}">
+                <DataGrid Visibility="Visible" x:Name="uczniowieDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource uczniowieViewSource}}" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected">
+                    <DataGrid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.229"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </DataGrid.RenderTransform>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" Click="Delete_Uczen"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="iDColumn" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="imięColumn" Binding="{Binding Imię}" Header="Imię" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="klasaIDColumn" Binding="{Binding KlasaID}" Header="Klasa ID" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="nazwiskoColumn" Binding="{Binding Nazwisko}" Header="Nazwisko" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="pESELColumn" Binding="{Binding PESEL}" Header="PESEL" Width="SizeToHeader"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Visibility="Hidden" x:Name="nauczycieleDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource nauczycieleViewSource}}" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" Click="Delete_Nauczyciel"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="iDColumn1" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="imięColumn1" Binding="{Binding Imię}" Header="Imię" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="nazwiskoColumn1" Binding="{Binding Nazwisko}" Header="Nazwisko" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="przedmiotIDColumn" Binding="{Binding PrzedmiotID}" Header="Przedmiot ID" Width="SizeToHeader"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Visibility="Hidden" x:Name="przedmiotyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource przedmiotyViewSource}}" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="iDColumn2" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="przedmiotColumn" Binding="{Binding Przedmiot}" Header="Przedmiot" Width="SizeToHeader"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Visibility="Hidden" x:Name="wycieczkiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource wycieczkiViewSource}}" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" Click="Delete_Wycieczki"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="atrakcjeColumn" Binding="{Binding Atrakcje}" Header="Atrakcje" Width="SizeToHeader"/>
+                        <DataGridTemplateColumn x:Name="doColumn" Header="Do" Width="SizeToHeader">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker SelectedDate="{Binding Do, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="iDColumn3" Binding="{Binding ID}" Header="ID" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="klasaIDColumn1" Binding="{Binding KlasaID}" Header="Klasa ID" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="miastoColumn" Binding="{Binding Miasto}" Header="Miasto" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="nauczycielIDColumn" Binding="{Binding NauczycielID}" Header="Nauczyciel ID" Width="SizeToHeader"/>
+                        <DataGridTemplateColumn x:Name="odColumn" Header="Od" Width="SizeToHeader">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DatePicker SelectedDate="{Binding Od, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

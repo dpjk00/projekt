@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SZKOLAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Klasy">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Klasa" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Uczniowies" Relationship="Self.FK__Uczniowie__Klasa__267ABA7A" FromRole="Klasy" ToRole="Uczniowie" />
+    <NavigationProperty Name="Wycieczkis" Relationship="Self.FK__Wycieczki__Klasa__2E1BDC42" FromRole="Klasy" ToRole="Wycieczki" />
+    <NavigationProperty Name="ZadaniaDomowes" Relationship="Self.FK__ZadaniaDo__Klasa__31EC6D26" FromRole="Klasy" ToRole="ZadaniaDomowe" />
+  </EntityType>
+  <EntityType Name="Nauczyciele">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Imię" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nazwisko" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PrzedmiotID" Type="Int32" />
+    <NavigationProperty Name="Przedmioty" Relationship="Self.FK__Nauczycie__Przed__2B3F6F97" FromRole="Nauczyciele" ToRole="Przedmioty" />
+    <NavigationProperty Name="Wycieczkis" Relationship="Self.FK__Wycieczki__Naucz__2F10007B" FromRole="Nauczyciele" ToRole="Wycieczki" />
+    <NavigationProperty Name="ZadaniaDomowes" Relationship="Self.FK__ZadaniaDo__Naucz__33D4B598" FromRole="Nauczyciele" ToRole="ZadaniaDomowe" />
+  </EntityType>
+  <EntityType Name="Przedmioty">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Przedmiot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Nauczycieles" Relationship="Self.FK__Nauczycie__Przed__2B3F6F97" FromRole="Przedmioty" ToRole="Nauczyciele" />
+  </EntityType>
+  <EntityType Name="Uczniowie">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Imię" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KlasaID" Type="Int32" />
+    <Property Name="Nazwisko" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PESEL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Klasy" Relationship="Self.FK__Uczniowie__Klasa__267ABA7A" FromRole="Uczniowie" ToRole="Klasy" />
+    <NavigationProperty Name="ZadaniaDomowes" Relationship="Self.FK__ZadaniaDo__Uczeń__32E0915F" FromRole="Uczniowie" ToRole="ZadaniaDomowe" />
+  </EntityType>
+  <EntityType Name="Wycieczki">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlasaID" Type="Int32" />
+    <Property Name="NauczycielID" Type="Int32" />
+    <Property Name="Miasto" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Atrakcje" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Od" Type="DateTime" Precision="3" />
+    <Property Name="Do" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Klasy" Relationship="Self.FK__Wycieczki__Klasa__2E1BDC42" FromRole="Wycieczki" ToRole="Klasy" />
+    <NavigationProperty Name="Nauczyciele" Relationship="Self.FK__Wycieczki__Naucz__2F10007B" FromRole="Wycieczki" ToRole="Nauczyciele" />
+  </EntityType>
+  <EntityType Name="ZadaniaDomowe">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlasaID" Type="Int32" />
+    <Property Name="UczeńID" Type="Int32" />
+    <Property Name="DataZakończenia" Type="DateTime" Precision="3" />
+    <Property Name="DataOddania" Type="DateTime" Precision="3" />
+    <Property Name="NauczycielID" Type="Int32" />
+    <Property Name="Opis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Klasy" Relationship="Self.FK__ZadaniaDo__Klasa__31EC6D26" FromRole="ZadaniaDomowe" ToRole="Klasy" />
+    <NavigationProperty Name="Nauczyciele" Relationship="Self.FK__ZadaniaDo__Naucz__33D4B598" FromRole="ZadaniaDomowe" ToRole="Nauczyciele" />
+    <NavigationProperty Name="Uczniowie" Relationship="Self.FK__ZadaniaDo__Uczeń__32E0915F" FromRole="ZadaniaDomowe" ToRole="Uczniowie" />
+  </EntityType>
+  <Association Name="FK__Uczniowie__Klasa__267ABA7A">
+    <End Role="Klasy" Type="Self.Klasy" Multiplicity="0..1" />
+    <End Role="Uczniowie" Type="Self.Uczniowie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klasy">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Uczniowie">
+        <PropertyRef Name="KlasaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wycieczki__Klasa__2E1BDC42">
+    <End Role="Klasy" Type="Self.Klasy" Multiplicity="0..1" />
+    <End Role="Wycieczki" Type="Self.Wycieczki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klasy">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Wycieczki">
+        <PropertyRef Name="KlasaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ZadaniaDo__Klasa__31EC6D26">
+    <End Role="Klasy" Type="Self.Klasy" Multiplicity="0..1" />
+    <End Role="ZadaniaDomowe" Type="Self.ZadaniaDomowe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klasy">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ZadaniaDomowe">
+        <PropertyRef Name="KlasaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Nauczycie__Przed__2B3F6F97">
+    <End Role="Przedmioty" Type="Self.Przedmioty" Multiplicity="0..1" />
+    <End Role="Nauczyciele" Type="Self.Nauczyciele" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Przedmioty">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Nauczyciele">
+        <PropertyRef Name="PrzedmiotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wycieczki__Naucz__2F10007B">
+    <End Role="Nauczyciele" Type="Self.Nauczyciele" Multiplicity="0..1" />
+    <End Role="Wycieczki" Type="Self.Wycieczki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nauczyciele">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Wycieczki">
+        <PropertyRef Name="NauczycielID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ZadaniaDo__Naucz__33D4B598">
+    <End Role="Nauczyciele" Type="Self.Nauczyciele" Multiplicity="0..1" />
+    <End Role="ZadaniaDomowe" Type="Self.ZadaniaDomowe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nauczyciele">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ZadaniaDomowe">
+        <PropertyRef Name="NauczycielID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ZadaniaDo__Uczeń__32E0915F">
+    <End Role="Uczniowie" Type="Self.Uczniowie" Multiplicity="0..1" />
+    <End Role="ZadaniaDomowe" Type="Self.ZadaniaDomowe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uczniowie">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ZadaniaDomowe">
+        <PropertyRef Name="UczeńID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SZKOLAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Klasies" EntityType="Self.Klasy" />
+    <EntitySet Name="Nauczycieles" EntityType="Self.Nauczyciele" />
+    <EntitySet Name="Przedmioties" EntityType="Self.Przedmioty" />
+    <EntitySet Name="Uczniowies" EntityType="Self.Uczniowie" />
+    <EntitySet Name="Wycieczkis" EntityType="Self.Wycieczki" />
+    <EntitySet Name="ZadaniaDomowes" EntityType="Self.ZadaniaDomowe" />
+    <AssociationSet Name="FK__Uczniowie__Klasa__267ABA7A" Association="Self.FK__Uczniowie__Klasa__267ABA7A">
+      <End Role="Klasy" EntitySet="Klasies" />
+      <End Role="Uczniowie" EntitySet="Uczniowies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wycieczki__Klasa__2E1BDC42" Association="Self.FK__Wycieczki__Klasa__2E1BDC42">
+      <End Role="Klasy" EntitySet="Klasies" />
+      <End Role="Wycieczki" EntitySet="Wycieczkis" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ZadaniaDo__Klasa__31EC6D26" Association="Self.FK__ZadaniaDo__Klasa__31EC6D26">
+      <End Role="Klasy" EntitySet="Klasies" />
+      <End Role="ZadaniaDomowe" EntitySet="ZadaniaDomowes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Nauczycie__Przed__2B3F6F97" Association="Self.FK__Nauczycie__Przed__2B3F6F97">
+      <End Role="Przedmioty" EntitySet="Przedmioties" />
+      <End Role="Nauczyciele" EntitySet="Nauczycieles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wycieczki__Naucz__2F10007B" Association="Self.FK__Wycieczki__Naucz__2F10007B">
+      <End Role="Nauczyciele" EntitySet="Nauczycieles" />
+      <End Role="Wycieczki" EntitySet="Wycieczkis" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ZadaniaDo__Naucz__33D4B598" Association="Self.FK__ZadaniaDo__Naucz__33D4B598">
+      <End Role="Nauczyciele" EntitySet="Nauczycieles" />
+      <End Role="ZadaniaDomowe" EntitySet="ZadaniaDomowes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ZadaniaDo__Uczeń__32E0915F" Association="Self.FK__ZadaniaDo__Uczeń__32E0915F">
+      <End Role="Uczniowie" EntitySet="Uczniowies" />
+      <End Role="ZadaniaDomowe" EntitySet="ZadaniaDomowes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
