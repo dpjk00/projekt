@@ -24,6 +24,12 @@ namespace ProjektEF
         SZKOLAEntities context = new SZKOLAEntities();
         CollectionViewSource uczViewSource;
 
+        DateTime today = DateTime.Today;
+        public DateTime DateTimePicker()
+        {
+            return today;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -193,33 +199,82 @@ namespace ProjektEF
         {
             Nauczyciele nauczyciel = new Nauczyciele()
             {
-                Imię = 
+                Imię = imieNau.Text,
+                Nazwisko = nazwiskoNau.Text,
+                PrzedmiotID = int.Parse(przedmiotIDNau.Text)
             };
+
+            context.Nauczycieles.Add(nauczyciel);
+            context.SaveChanges();
+            uczViewSource.View.Refresh();
         }
 
         private void Add_Wycieczka(object sender, RoutedEventArgs e)
         {
+            Wycieczki wycieczka = new Wycieczki()
+            {
+                Miasto = miastoTextBox.Text,
+                Atrakcje = atrakcjeTextBox.Text,
+                NauczycielID = int.Parse(nauczycielIDTextBox1.Text),
+                KlasaID = int.Parse(klasaIDTextBox1.Text),
+                Od = odDatePicker.SelectedDate,
+                Do = doDatePicker.SelectedDate
+            };
 
+            context.Wycieczkis.Add(wycieczka);
+            context.SaveChanges();
+            uczViewSource.View.Refresh();
         }
 
         private void Update_Uczen(object sender, RoutedEventArgs e)
         {
+            int uczenID = int.Parse(idUczen.Text);
 
+            Uczniowie u = context.Uczniowies.First(i => i.ID == uczenID);
+            u.Imię = imięTextBox.Text;
+            u.Nazwisko = nazwiskoTextBox.Text;
+            u.PESEL = pESELTextBox.Text;
+            u.KlasaID = int.Parse(klasaIDTextBox.Text);
+
+            context.SaveChanges();
+            uczViewSource.View.Refresh();
         }
 
         private void Update_Nauczyciel(object sender, RoutedEventArgs e)
         {
+            int id = int.Parse(nauID.Text);
+            Nauczyciele nau = context.Nauczycieles.First(i => i.ID == id);
+            nau.Imię = imieNau.Text;
+            nau.Nazwisko = nazwiskoNau.Text;
+            nau.PrzedmiotID = int.Parse(przedmiotIDNau.Text);
 
+            context.SaveChanges();
+            uczViewSource.View.Refresh();
         }
 
         private void Update_Przedmiot(object sender, RoutedEventArgs e)
         {
+            int id = int.Parse(przedmiotID.Text);
+            Przedmioty p = context.Przedmioties.First(i => i.ID == id);
+            p.Przedmiot = przedmiotTextBox.Text;
 
+            context.SaveChanges();
+            uczViewSource.View.Refresh();
         }
 
         private void Update_Wycieczka(object sender, RoutedEventArgs e)
         {
+            int id = int.Parse(wycID.Text);
+            Wycieczki w = context.Wycieczkis.First(i => i.ID == id);
+            w.Miasto = miastoTextBox.Text;
+            w.Atrakcje = atrakcjeTextBox.Text;
+            w.KlasaID = int.Parse(klasaIDTextBox1.Text);
+            w.NauczycielID = int.Parse(nauczycielIDTextBox1.Text);
+            w.Od = odDatePicker.SelectedDate;
+            w.Do = doDatePicker.SelectedDate;
 
+            context.SaveChanges();
+            uczViewSource.View.Refresh();
         }
     }
 }
