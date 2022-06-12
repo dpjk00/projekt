@@ -183,6 +183,7 @@
             <Grid Grid.Row="1"
                   Grid.Column="1"
                   Margin="10"
+                  Background="Transparent"
                   DataContext="{Binding Path=CurrentView, Mode=TwoWay}">
                 <DataGrid Visibility="Visible" x:Name="uczniowieDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource uczniowieViewSource}}" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected">
                     <DataGrid.RenderTransform>
@@ -197,7 +198,7 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Delete" Click="Delete_Uczen"/>
+                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Usuń" Click="Delete_Uczen"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -213,7 +214,7 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Delete" Click="Delete_Nauczyciel"/>
+                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Usuń" Click="Delete_Nauczyciel"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -234,7 +235,7 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Delete" Click="Delete_Wycieczki"/>
+                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Usuń" Click="Delete_Wycieczki"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

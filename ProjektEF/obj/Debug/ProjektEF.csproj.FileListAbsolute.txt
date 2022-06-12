@@ -23,3 +23,7 @@ C:\Users\Pajunk\source\repos\ProjektEF\ProjektEF\obj\Debug\Themes\ButtonTheme.ba
 C:\Users\Pajunk\source\repos\ProjektEF\ProjektEF\obj\Debug\Themes\MainLabelTheme.baml
 C:\Users\Pajunk\source\repos\ProjektEF\ProjektEF\obj\Debug\Themes\MenuButtonTheme.baml
 C:\Users\Pajunk\source\repos\ProjektEF\ProjektEF\obj\Debug\App.baml
+C:\Users\Pajunk\source\repos\ProjektEF\ProjektEF\bin\Debug\ProjektEF.exe.manifest
+C:\Users\Pajunk\source\repos\ProjektEF\ProjektEF\bin\Debug\ProjektEF.application
+C:\Users\Pajunk\source\repos\ProjektEF\ProjektEF\obj\Debug\ProjektEF.exe.manifest
+C:\Users\Pajunk\source\repos\ProjektEF\ProjektEF\obj\Debug\ProjektEF.application
