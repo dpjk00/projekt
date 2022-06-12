@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektEF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded"
+        Title="MainWindow" Height="600" Width="1000" Loaded="Window_Loaded"
         Background="Transparent"
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize">
@@ -35,7 +35,7 @@
     <Border Background="#1c1c1c" CornerRadius="10">
         <Grid DataContext="{StaticResource uczniowieViewSource}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -49,68 +49,105 @@
                        HorizontalAlignment="Center"
                        Foreground="White"
                        FontSize="21"/>
+            <Grid x:Name="grid1" Grid.Row="1" Margin="50, 10, 50, 0" Grid.ColumnSpan="2" DataContext="{StaticResource uczniowieViewSource}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Foreground="white" Content="Imię:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="imięTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center" Width="120"/>
+                <Label Foreground="white" Content="Klasa ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="klasaIDTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="" VerticalAlignment="Center" Width="120"/>
+                <Label Foreground="white" Content="Nazwisko:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="nazwiskoTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="" VerticalAlignment="Center" Width="120"/>
+                <Label Foreground="white" Content="PESEL:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="pESELTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="" VerticalAlignment="Center" Width="120"/>
+                <Button Style="{StaticResource ButtonTheme}" Margin="0. 10" Click="Add_Uczen" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1" Content="Dodaj"></Button>
+                <Button Style="{StaticResource ButtonTheme}" Margin="0. 10" Click="Update_Uczen" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" Content="Modyfikuj"></Button>
+            </Grid>
+            <Grid x:Name="grid2" Visibility="Hidden" Margin="50, 10, 50, 0" Grid.Row="1" Grid.ColumnSpan="2" DataContext="{StaticResource przedmiotyViewSource}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Foreground="white" Content="Przedmiot:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" Width="120" x:Name="przedmiotTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center"/>
+                <Button Style="{StaticResource ButtonTheme}" Grid.Row="2" Grid.Column="2" Click="Add_Przedmiot" Content="Dodaj"></Button>
+                <Button Style="{StaticResource ButtonTheme}" Margin="0. 10" Click="Update_Przedmiot" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" Content="Modyfikuj"></Button>
+            </Grid>
 
-            <StackPanel DataContext="{StaticResource uczniowieViewSource}"
-                        Grid.Row="1"
-                        Visibility="Visible"
-                        x:Name="uczniowieStackPanel">
-
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Imię:"/>
-                <TextBox x:Name="imieBox" Style="{StaticResource MainLabelTheme}" Text="{Binding Imię, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" VerticalAlignment="Center" />
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Klasa ID:"/>
-                <TextBox x:Name="klasaIDTextBox" Style="{StaticResource MainLabelTheme}" Text="{Binding KlasaID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" VerticalAlignment="Center" />
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Nazwisko:"/>
-                <TextBox x:Name="nazwiskoTextBox" Style="{StaticResource MainLabelTheme}" Text="{Binding Nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" VerticalAlignment="Center" />
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Content="PESEL:"/>
-                <TextBox x:Name="pESELTextBox" Style="{StaticResource MainLabelTheme}" Text="{Binding PESEL, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="120" VerticalAlignment="Center" />
-                <Button Click="Add_Uczen" Style="{StaticResource ButtonTheme}" Content="Dodaj"></Button>
-            </StackPanel>
-            <StackPanel DataContext="{StaticResource przedmiotyViewSource}"
-                        Grid.Row="1"
-                        Visibility="Hidden"
-                        x:Name="przedmiotyStackPanel">
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Przedmiot:"/>
-                <TextBox x:Name="przedmiotTextBox" Style="{StaticResource MainLabelTheme}" HorizontalAlignment="Center" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center" Width="120"/>
-                <Button Click="Add_Przedmiot" Style="{StaticResource ButtonTheme}" Content="Dodaj"></Button>
-            </StackPanel>
-            <StackPanel DataContext="{StaticResource nauczycieleViewSource}"
-                        Grid.Row="1"
-                        Visibility="Hidden"
-                        x:Name="nauczycieleStackPanel">
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Imię:"/>
-                <TextBox x:Name="imięTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" Text="{Binding Imię, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Nazwisko:"/>
-                <TextBox x:Name="nazwiskoTextBox1" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="{Binding Nazwisko, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="PrzedmiotID:"/>
-                <TextBox x:Name="przedmiotIDTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" Text="{Binding PrzedmiotID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Button Click="Add_Nauczyciel" Style="{StaticResource ButtonTheme}" Content="Dodaj"></Button>
-
-            </StackPanel>
-
-            <StackPanel DataContext="{StaticResource wycieczkiViewSource}"
-                        Grid.Row="1"
-                        Visibility="Hidden"
-                        x:Name="wycieczkiStackPanel">
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Miasto:"/>
-                <TextBox x:Name="miastoTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" Text="{Binding Miasto, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Atrakcje:"/>
-                <TextBox x:Name="atrakcjeTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="0" Text="{Binding Atrakcje, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="KlasaID:"/>
-                <TextBox x:Name="klasaIDTextBox1" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" Text="{Binding KlasaID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="NauczycielID:"/>
-                <TextBox x:Name="nauczycielIDTextBox" Style="{StaticResource MainLabelTheme}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="5" Text="{Binding NauczycielID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Od:"/>
-                <DatePicker x:Name="odDatePicker" Grid.Column="1" HorizontalAlignment="Center" Margin="3" Grid.Row="6" SelectedDate="{Binding Od, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-                <Label VerticalAlignment="Center" Foreground="WhiteSmoke" Grid.Row="0" Margin="40, 0, 0, 0" HorizontalAlignment="Left" Grid.Column="0" Content="Do:"/>
-                <DatePicker x:Name="doDatePicker" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" SelectedDate="{Binding Do, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-                <Button Click="Add_Wycieczka" Style="{StaticResource ButtonTheme}" Content="Dodaj"></Button>
-            </StackPanel>
+            <Grid x:Name="grid3" Visibility="Hidden" Margin="50, 10, 50, 0" Grid.Row="1" Grid.ColumnSpan="2" DataContext="{StaticResource nauczycieleViewSource}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Foreground="white" Content="Imię:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="imieNau" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="" VerticalAlignment="Center" Width="120"/>
+                <Label Foreground="white" Content="Nazwisko:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="nazwiskoNau" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="" VerticalAlignment="Center" Width="120"/>
+                <Label Foreground="white" Content="Przedmiot ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="przedmiotIDNau" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="" VerticalAlignment="Center" Width="120"/>
+                <Button Style="{StaticResource ButtonTheme}" Grid.Row="4" Grid.Column="2" Click="Add_Nauczyciel" Content="Dodaj"></Button>
+                <Button Style="{StaticResource ButtonTheme}" Margin="0. 10" Click="Update_Nauczyciel" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" Content="Modyfikuj"></Button>
+            </Grid>
+            <Grid Visibility="Hidden" x:Name="grid4" Margin="50, 10, 50, 0" DataContext="{StaticResource wycieczkiViewSource}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Foreground="White" Content="Atrakcje:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="atrakcjeTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="" VerticalAlignment="Center" Width="140"/>
+                <Label Foreground="White" Content="Do:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <DatePicker x:Name="doDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" SelectedDate="" VerticalAlignment="Center"/>
+                <Label Foreground="White" Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="" VerticalAlignment="Center" Width="140"/>
+                <Label Foreground="White" Content="Klasa ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="klasaIDTextBox1" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="" VerticalAlignment="Center" Width="140"/>
+                <Label Foreground="White" Content="Miasto:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="miastoTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="" VerticalAlignment="Center" Width="140"/>
+                <Label Foreground="White" Content="Nauczyciel ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                <TextBox BorderThickness="0" Background="#252525" Foreground="white" Padding="5" Height="30" x:Name="nauczycielIDTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5" Text="" VerticalAlignment="Center" Width="140"/>
+                <Label Foreground="White" Content="Od:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                <DatePicker x:Name="odDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6" SelectedDate="" VerticalAlignment="Center"/>
+                <Button Style="{StaticResource ButtonTheme}" Grid.Row="7" Grid.Column="2" Click="Add_Wycieczka" Content="Dodaj"></Button>
+                <Button Style="{StaticResource ButtonTheme}" Margin="0. 10" Click="Update_Wycieczka" HorizontalAlignment="Center" Grid.Row="7" Grid.Column="0" Content="Modyfikuj"></Button>
+            </Grid>
 
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal">
                 <RadioButton Content="Uczniowie"
                              Height="75"
-                             Width="150"
+                             Width="175"
                              FontSize="16"
                              Foreground="White"
                              Style="{StaticResource MenuButtonTheme}"
@@ -118,13 +155,13 @@
                              Command="{StaticResource UczniowieCommand}"/>
                 <RadioButton Content="Nauczyciele"
                              Height="75"
-                             Width="150"
+                             Width="175"
                              FontSize="16"
                              Foreground="White"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{StaticResource NauczycieleCommand}"/>
                 <RadioButton Content="Przedmioty"
-                            Width="150"
+                            Width="175"
                              Height="75"
                              FontSize="16"
                              Foreground="White"
@@ -132,7 +169,7 @@
                              Command="{StaticResource PrzedmiotyCommand}"/>
                 <RadioButton Content="Wycieczki"
                              Height="75"
-                             Width="150"
+                             Width="175"
                              FontSize="16"
                              Foreground="White"
                              Style="{StaticResource MenuButtonTheme}"
@@ -157,7 +194,7 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Delete" Click="Delete_Uczen"/>
+                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Delete" Click="Delete_Uczen"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -173,7 +210,7 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Delete" Click="Delete_Nauczyciel"/>
+                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Delete" Click="Delete_Nauczyciel"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -194,7 +231,7 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Delete" Click="Delete_Wycieczki"/>
+                                    <Button BorderThickness="0" FontSize="16" Foreground="White" Padding="3" Background="#94251e" Content="Delete" Click="Delete_Wycieczki"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

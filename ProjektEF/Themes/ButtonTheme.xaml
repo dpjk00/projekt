@@ -8,6 +8,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Background" Value="#94251e"/>
             <Setter Property="Foreground" Value="white"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>
