@@ -1,0 +1,14 @@
+CRUD APP
+
+1.	Krótki opis aplikacji i powód stworzenia
+Aplikacja CRUD APP została stworzona dla szkoły podstawowej w Krakowie. Została utworzona ponieważ tradycyjny sposób zarządzania danymi stał się toporny i niewydajny.
+Dzięki tej aplikacji zarządzanie danymi stanie nie tylko proste i efektywne, ale również tańsze. Celem tej aplikacji jest przyśpieszenie procesu zarządzania danymi i łatwy dostęp do jej zawartości. W tej aplikacji będzie można odczytywać, dodawać, usuwać i modyfikować kilka tabel takich jak: Uczniowie, Nauczyciele, Wycieczki, Przedmioty.
+
+2.	Dodawanie rekordu
+Aby dodać rekord należy wybrać odpowiednią zakładkę, następnie uzupełnić pola wybranymi danymi (pola są umieszczone na lewo) i nacisnąć Dodaj.
+
+3.	Usuwanie rekordu
+Aby usunąć rekord należy wybrać odpowiednią zakładkę, a następnie kliknąć Usuń, przy rekordzie, który chcemy usunąć.
+
+4.	Modyfikacja rekordu
+Aby zmodyfikować dany rekord, należy wybrać odpowiednią zakładkę, następnie kliknąć na rekord, który chcemy zmodyfikować. Potem należy uzupełnić pola informacjami, którymi chcemy zastąpić istniejące dane i kliknąć Modyfikuj.
