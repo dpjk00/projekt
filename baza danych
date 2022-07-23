@@ -1,0 +1,117 @@
+USE master;
+GO
+IF DB_ID (N'SZKOLA') IS NOT NULL
+DROP DATABASE SZKOLA;
+
+CREATE DATABASE SZKOLA
+COLLATE Polish_100_CI_AS; 
+GO
+
+USE master;
+GO
+IF DB_ID (N'SZKOLA') IS NOT NULL
+DROP DATABASE SZKOLA;
+
+CREATE DATABASE SZKOLA
+COLLATE Polish_100_CI_AS; 
+GO
+
+USE SZKOLA
+
+CREATE TABLE [dbo].[Klasy](
+	[ID] [int] PRIMARY KEY NOT NULL IDENTITY (1,1),
+	[Klasa] [nvarchar] (5) NOT NULL)
+
+CREATE TABLE [dbo].[Uczniowie](
+	[ID] [int] PRIMARY KEY NOT NULL IDENTITY (1,1),
+	[Imię] [nvarchar] (20) NOT NULL,
+	[KlasaID] [int] FOREIGN KEY REFERENCES Klasy(ID),
+	[Nazwisko] [nvarchar] (20) NOT NULL,
+	[PESEL] [nvarchar] (20) NOT NULL)
+
+CREATE TABLE [dbo].[Przedmioty](
+	[ID] [int] PRIMARY KEY NOT NULL IDENTITY (1,1),
+	[Przedmiot] [nvarchar] (20))
+
+CREATE TABLE [dbo].[Nauczyciele](
+	[ID] [int] PRIMARY KEY NOT NULL IDENTITY (1,1),
+	[Imię] [nvarchar] (20) NOT NULL,
+	[Nazwisko] [nvarchar] (20) NOT NULL,
+	[PrzedmiotID] [int] FOREIGN KEY REFERENCES Przedmioty(ID))
+
+CREATE TABLE [dbo].[Wycieczki](
+	[ID] [int] PRIMARY KEY NOT NULL  IDENTITY (1,1),
+	[KlasaID] [int] FOREIGN KEY REFERENCES Klasy(ID),
+	[NauczycielID] [int] FOREIGN KEY REFERENCES Nauczyciele(ID),
+	[Miasto] [nvarchar] (20),
+	[Atrakcje] [nvarchar] (100),
+	[Od] [datetime],
+	[Do] [datetime])
+
+CREATE TABLE [dbo].[ZadaniaDomowe](
+	[ID] [int] PRIMARY KEY NOT NULL IDENTITY(1,1),
+	[KlasaID] [int] FOREIGN KEY REFERENCES Klasy(ID),
+	[UczeńID] [int] FOREIGN KEY REFERENCES Uczniowie(ID),
+	[DataZakończenia] [datetime],
+	[DataOddania] [datetime],
+	[NauczycielID] [int] FOREIGN KEY REFERENCES Nauczyciele(ID),
+	[Opis] [nvarchar] (500))
+
+INSERT INTO Klasy(Klasa)
+VALUES ('Ia'),
+('Ib'),
+('IIa'),
+('IIb'),
+('IIIa'),
+('IIIb')
+
+INSERT INTO Przedmioty(Przedmiot)
+VALUES ('Matematyka'),
+('j.polski'),
+('j.angielski'),
+('przyroda'),
+('wf'),
+('plastyka'),
+('technika'),
+('informatyka'),
+('religia'),
+('geografia')
+
+INSERT INTO Uczniowie(Imię, Nazwisko, PESEL)
+VALUES
+('Adam', 'Wójcik', '13281681178'),
+('Cezary', 'Kapustka', '17252225965'),
+('Kacper', 'Dąbrowski', '07311515278'),
+('Gustaw', 'Kamiński', '15231156185'),
+('Aureliusz', 'Szulc', '09251631821'),
+('Łukasz', 'Kowalczyk', '10231794755'),
+('Damian', 'Wiśniewski', '18231411395'),
+('Kryspin', 'Lis', '18323117765'),
+('Roman', 'Sawicki', '08240715652')
+
+INSERT INTO Nauczyciele(Imię, Nazwisko, PrzedmiotID)
+VALUES
+('Filip', 'Chmielewski', 1),
+('Mariusz', 'Krawczyk', 5),
+('Emanuel', 'Wójcik', 8),
+('Diego', 'Bąk', 6),
+('Dorian', 'Błaszczyk', 3),
+('Gniewomir', 'Kołodziej', 9),
+('Lidia', 'Błaszczyk', 7),
+('Cecylia', 'Krajewska', 3)
+
+INSERT INTO ZadaniaDomowe(KlasaID, UczeńID, DataZakończenia, DataOddania, NauczycielID, Opis)
+VALUES
+('1', '7', '2018-04-19', '2018-04-12', 1, 'zad 1, 2 str 21'),
+('1', '1', '2018-05-19', '2018-05-18', 1, 'zad 1, 2 str 21'),
+('2', '2', '2018-05-19', '2018-04-25', 2, 'napisz wiersz'),
+('4', '4', '2018-05-19', '2018-05-21', 2, 'napisz wiersz'),
+('5', '5', '2018-04-28', '2018-04-12', 1, 'oblicz delte trójkąta'),
+('6', '6', '2018-04-19', '2018-04-12', 1, 'oblicz delte trójkąta'),
+('1', '7', '2018-05-11', NULL, 1, 'zad 5, 1 str 102')
+
+INSERT INTO Wycieczki(KlasaID, NauczycielID, Miasto, Atrakcje, Od, Do)
+VALUES
+(1, 4, 'Kraków', 'Wawel', '2022-02-24', '2022-02-24'),
+(2, 1, 'Warszawa', 'Pałac Kultury, Muzeum Narodowe, Stadion Narodowy', '2022-03-15', '2022-03-19'),
+(5, 8, 'Gdańsk', 'kościoły, przepływ statkiem, state miasto, plaża', '2022-02-24', '2022-02-24')
