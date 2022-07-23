@@ -10,7 +10,7 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize">
 
-
+    
     <Window.Resources>
         <CollectionViewSource x:Key="uczniowieViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Uczniowie}, CreateList=True}"/>
         <CollectionViewSource x:Key="nauczycieleViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Nauczyciele}, CreateList=True}"/>
@@ -262,6 +262,11 @@
                 </DataGrid>
 
             </Grid>
+
+            <ContentControl Grid.Row="1"
+                            Content="{Binding CurrentView}"/>
+
+
         </Grid>
     </Border>
 </Window>

@@ -40,6 +40,7 @@ namespace ProjektEF
             uczViewSource = ((CollectionViewSource)(FindResource("uczniowieViewSource")));
             context.Uczniowies.Load();
             uczViewSource.Source = context.Uczniowies.Local;
+            uczniowieDataGrid.CanUserAddRows = false;
         }
 
         private void UczniowieCommandHandler(object sender, ExecutedRoutedEventArgs e)
@@ -55,6 +56,7 @@ namespace ProjektEF
             grid2.Visibility = Visibility.Hidden;
             grid3.Visibility = Visibility.Hidden;
             grid4.Visibility = Visibility.Hidden;
+            uczniowieDataGrid.CanUserAddRows = false;
         }
 
         private void NauczycieleCommandHandler(object sender, ExecutedRoutedEventArgs e)
@@ -70,6 +72,7 @@ namespace ProjektEF
             grid2.Visibility = Visibility.Hidden;
             grid3.Visibility = Visibility.Visible;
             grid4.Visibility = Visibility.Hidden;
+            nauczycieleDataGrid.CanUserAddRows = false;
         }
 
         private void WycieczkiCommandHandler(object sender, ExecutedRoutedEventArgs e)
@@ -85,6 +88,7 @@ namespace ProjektEF
             grid3.Visibility = Visibility.Hidden;
             grid4.Visibility = Visibility.Visible;
             grid2.Visibility = Visibility.Hidden;
+            wycieczkiDataGrid.CanUserAddRows = false;
         }
 
         private void PrzedmiotyCommandHandler(object sender, ExecutedRoutedEventArgs e)
@@ -100,6 +104,7 @@ namespace ProjektEF
             grid3.Visibility = Visibility.Hidden;
             grid4.Visibility = Visibility.Hidden;
             grid2.Visibility = Visibility.Visible;
+            przedmiotyDataGrid.CanUserAddRows = false;
         }
 
         private void Delete_Uczen(object sender, RoutedEventArgs e)
