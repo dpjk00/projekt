@@ -22,14 +22,7 @@ namespace ProjektEF
     public partial class MainWindow : Window
     {
         SZKOLAEntities context = new SZKOLAEntities();
-        CollectionViewSource uczViewSource;
-
-        DateTime today = DateTime.Today;
-        public DateTime DateTimePicker()
-        {
-            return today;
-        }
-
+        CollectionViewSource viewSource;
         public MainWindow()
         {
             InitializeComponent();
@@ -37,17 +30,17 @@ namespace ProjektEF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            uczViewSource = ((CollectionViewSource)(FindResource("uczniowieViewSource")));
+            viewSource = ((CollectionViewSource)(FindResource("uczniowieViewSource")));
             context.Uczniowies.Load();
-            uczViewSource.Source = context.Uczniowies.Local;
+            viewSource.Source = context.Uczniowies.Local;
             uczniowieDataGrid.CanUserAddRows = false;
         }
 
         private void UczniowieCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            uczViewSource = ((CollectionViewSource)(FindResource("uczniowieViewSource")));
+            viewSource = ((CollectionViewSource)(FindResource("uczniowieViewSource")));
             context.Uczniowies.Load();
-            uczViewSource.Source = context.Uczniowies.Local;
+            viewSource.Source = context.Uczniowies.Local;
             uczniowieDataGrid.Visibility = Visibility.Visible;
             przedmiotyDataGrid.Visibility = Visibility.Hidden;
             nauczycieleDataGrid.Visibility = Visibility.Hidden;
@@ -61,9 +54,9 @@ namespace ProjektEF
 
         private void NauczycieleCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            uczViewSource = ((CollectionViewSource)(FindResource("nauczycieleViewSource")));
+            viewSource = ((CollectionViewSource)(FindResource("nauczycieleViewSource")));
             context.Nauczycieles.Load();
-            uczViewSource.Source = context.Nauczycieles.Local;
+            viewSource.Source = context.Nauczycieles.Local;
             uczniowieDataGrid.Visibility = Visibility.Hidden;
             przedmiotyDataGrid.Visibility = Visibility.Hidden;
             nauczycieleDataGrid.Visibility = Visibility.Visible;
@@ -77,9 +70,9 @@ namespace ProjektEF
 
         private void WycieczkiCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            uczViewSource = ((CollectionViewSource)(FindResource("wycieczkiViewSource")));
+            viewSource = ((CollectionViewSource)(FindResource("wycieczkiViewSource")));
             context.Wycieczkis.Load();
-            uczViewSource.Source = context.Wycieczkis.Local;
+            viewSource.Source = context.Wycieczkis.Local;
             uczniowieDataGrid.Visibility = Visibility.Hidden;
             przedmiotyDataGrid.Visibility = Visibility.Hidden;
             nauczycieleDataGrid.Visibility = Visibility.Hidden;
@@ -93,9 +86,9 @@ namespace ProjektEF
 
         private void PrzedmiotyCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            uczViewSource = ((CollectionViewSource)(FindResource("przedmiotyViewSource")));
+            viewSource = ((CollectionViewSource)(FindResource("przedmiotyViewSource")));
             context.Przedmioties.Load();
-            uczViewSource.Source = context.Przedmioties.Local;
+            viewSource.Source = context.Przedmioties.Local;
             uczniowieDataGrid.Visibility = Visibility.Hidden;
             przedmiotyDataGrid.Visibility = Visibility.Visible;
             nauczycieleDataGrid.Visibility = Visibility.Hidden;
@@ -112,7 +105,7 @@ namespace ProjektEF
             int id = (uczniowieDataGrid.SelectedItem as Uczniowie).ID;
             Uczniowie uczen = (from r in context.Uczniowies where r.ID == id select r).SingleOrDefault();
 
-            var cur = uczViewSource.View.CurrentItem as Uczniowie;
+            var cur = viewSource.View.CurrentItem as Uczniowie;
             var cust = (from c in context.Uczniowies
                         where c.ID == cur.ID
                         select c).FirstOrDefault();
@@ -123,7 +116,7 @@ namespace ProjektEF
             }
             context.Uczniowies.Remove(uczen);
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Delete_Nauczyciel(object sender, RoutedEventArgs e)
@@ -131,12 +124,12 @@ namespace ProjektEF
             int id = (nauczycieleDataGrid.SelectedItem as Nauczyciele).ID;
             Nauczyciele nauczyciel = (from r in context.Nauczycieles where r.ID == id select r).SingleOrDefault();
 
-            var cur = uczViewSource.View.CurrentItem as Nauczyciele;
+            var cur = viewSource.View.CurrentItem as Nauczyciele;
             var cust = (from c in context.Nauczycieles
                         where c.ID == cur.ID
                         select c).FirstOrDefault();
 
-            //usuwanie z kluczów obcych
+            
             foreach (var zd in cust.ZadaniaDomowes.ToList())
             {
                 context.ZadaniaDomowes.Remove(zd);
@@ -148,7 +141,7 @@ namespace ProjektEF
 
             context.Nauczycieles.Remove(nauczyciel);
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Delete_Przedmioty(object sender, RoutedEventArgs e)
@@ -158,7 +151,7 @@ namespace ProjektEF
 
             context.Przedmioties.Remove(przedmiot);
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Delete_Wycieczki(object sender, RoutedEventArgs e)
@@ -168,7 +161,7 @@ namespace ProjektEF
 
             context.Wycieczkis.Remove(wycieczka);
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Add_Uczen(object sender, RoutedEventArgs e)
@@ -184,7 +177,7 @@ namespace ProjektEF
 
             context.Uczniowies.Add(uczen);
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Add_Przedmiot(object sender, RoutedEventArgs e)
@@ -197,7 +190,7 @@ namespace ProjektEF
 
             context.Przedmioties.Add(przedmiot);
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Add_Nauczyciel(object sender, RoutedEventArgs e)
@@ -211,7 +204,7 @@ namespace ProjektEF
 
             context.Nauczycieles.Add(nauczyciel);
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Add_Wycieczka(object sender, RoutedEventArgs e)
@@ -228,7 +221,7 @@ namespace ProjektEF
 
             context.Wycieczkis.Add(wycieczka);
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Update_Uczen(object sender, RoutedEventArgs e)
@@ -242,7 +235,7 @@ namespace ProjektEF
             u.KlasaID = int.Parse(klasaIDTextBox.Text);
 
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Update_Nauczyciel(object sender, RoutedEventArgs e)
@@ -254,7 +247,7 @@ namespace ProjektEF
             nau.PrzedmiotID = int.Parse(przedmiotIDNau.Text);
 
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Update_Przedmiot(object sender, RoutedEventArgs e)
@@ -264,7 +257,7 @@ namespace ProjektEF
             p.Przedmiot = przedmiotTextBox.Text;
 
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
 
         private void Update_Wycieczka(object sender, RoutedEventArgs e)
@@ -279,7 +272,7 @@ namespace ProjektEF
             w.Do = doDatePicker.SelectedDate;
 
             context.SaveChanges();
-            uczViewSource.View.Refresh();
+            viewSource.View.Refresh();
         }
     }
 }

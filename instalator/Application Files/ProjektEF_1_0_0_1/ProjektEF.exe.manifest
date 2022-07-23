@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="ProjektEF.exe" version="1.0.0.1" publicKeyToken="abbd9d732ffb7013" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ProjektEF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ProjektEF.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.dll" size="4991352">
+      <assemblyIdentity name="EntityFramework" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>/0K8pwRgXhh6u0VSOGixUSjWrxworUCkV51QfTSpU7I=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.SqlServer.dll" size="591752">
+      <assemblyIdentity name="EntityFramework.SqlServer" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>qWDdTS8PN7PAn/uVZ8MkJrh5ExDX65NcBMgZw9Rr1J4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ProjektEF.exe" size="69608">
+      <assemblyIdentity name="ProjektEF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>IjHF5ENomcSoM6BA/3QDkzvMb65AQMtHQSiXQ1rrxTs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="ProjektEF.exe.config" size="1214">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>N3hqPOGlFKndBhTBVaI12pj+2PiNwNV4auGa2l8dhck=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="SZKOLA_Model.Context.tt" size="22936">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Y2//3c1olOiKSzDbBVM3yVmf3uSA9fPzkRrFMFcCx+k=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="SZKOLA_Model.tt" size="25281">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qYxU67MuaRwfaGLkyw7+2+OLvd2oUUhjRZwF93/Ys4Y=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-GDA3BP4\Pajunk" issuerKeyHash="891add095f77123b0a0a678900de16e5d2fe9904" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>M0UlgSCsX0PnnlvxnnRH8gjchfOOP43F7wkH8wGLlc4=</DigestValue></Reference></SignedInfo><SignatureValue>AXmzboFyD4MXKbk/SCxK5YpIauRyLBWe26NOCFCeDqPKDzULg1wuFugZQ5skJhYA1gEf3oPePrmGRfvGHvDxEt1Gd5aWqdY8DP9s5Ud+mcH8BN8sy61GUYtH7K4jo32EJ3jrRzCmYI03NceO3GO7fHyVHRpIItKNwffgyFoR9Ps=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>tNW9I7Lg0xuR/xqXZX6jjMdn6+ZpKEECbSv2Z5r8iEV2gDwjgdFWKuYkAWz18KxaYFRjAWQN3RxbY63bdFKNiA3/3MxQuUI/ZKznqH+R+CLHLCOxsZs9EAlLAVzoA+d0FPnQSpPKQx6MMRu/lW1syDV3ujmMzsC5GECLBH3w9/U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="ce958b01f30709efc58d3f8ef385dc08f247749ef15b9ee7435fac2081254533" Description="" Url=""><as:assemblyIdentity name="ProjektEF.exe" version="1.0.0.1" publicKeyToken="abbd9d732ffb7013" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-GDA3BP4\Pajunk</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>Pk46kl9C4JJ/P6u2CFL8IYJ5UJVQ8mQuqLVwcKnJfsY=</DigestValue></Reference></SignedInfo><SignatureValue>aY0QtBDyb0d72MpsDmE0uDhVoJFk3mYIzdjwZaScAPngoaACXMYy7wEUzz/O/ZyEUciW5y/cH3HKD+f7fU/DevV6V8qVYfoGr30++XEwRE41Xq1SwfdO5lVDhVUruN3AXdvzhSp3iW44gGD/V7ioXjg52V1iN/CKJQxJCrxI05E=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>tNW9I7Lg0xuR/xqXZX6jjMdn6+ZpKEECbSv2Z5r8iEV2gDwjgdFWKuYkAWz18KxaYFRjAWQN3RxbY63bdFKNiA3/3MxQuUI/ZKznqH+R+CLHLCOxsZs9EAlLAVzoA+d0FPnQSpPKQx6MMRu/lW1syDV3ujmMzsC5GECLBH3w9/U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB8TCCAVqgAwIBAgIQcDBS+h2n+rVPo2AgSyDIFDANBgkqhkiG9w0BAQsFADA3MTUwMwYDVQQDHiwARABFAFMASwBUAE8AUAAtAEcARABBADMAQgBQADQAXABQAGEAagB1AG4AazAeFw0yMjA2MTIxMTAyMDFaFw0yMzA2MTIxNzAyMDFaMDcxNTAzBgNVBAMeLABEAEUAUwBLAFQATwBQAC0ARwBEAEEAMwBCAFAANABcAFAAYQBqAHUAbgBrMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC01b0jsuDTG5H/GpdlfqOMx2fr5mkoQQJtK/ZnmvyIRXaAPCOB0VYq5iQBbPXwrFpgVGMBZA3dHFtjrdt0Uo2IDf/czFC5Qj9krOeof5H4IscsI7Gxmz0QCUsBXOgD53QU+dBKk8pDHowxG7+VbWzINXe6OYzOwLkYQIsEffD39QIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAI9YIHVjQzOlgSq0lVWjmr9hI16/oHbCRzOSo+rpyLH7VtYPXsX5E7FqGFKqY+I+2JwLmqW/Q6LyguJcelHunm6PKvsY0BpBSbGf+ZnFYan6+RkckNZyMFDpKszcm+3i4C9LkIdyHiTwKzmt5y9y3W7zlIsrwq1WmQX6xrRZUKa5</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
